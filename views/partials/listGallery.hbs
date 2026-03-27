@@ -1,0 +1,35 @@
+{{!--
+    List Gallery partial.
+    Displays the photos of a single gallery in a table format.
+    Shows a message if the gallery is empty.
+--}}
+
+{{!-- Only render the table if the gallery contains photos --}}
+{{#if singleGallery.photos}}
+
+<table class="ui stackable table">
+    <thead>
+        <tr>
+            <th>Picture</th>       {{!-- Column for the photo title --}}
+            <th>Phtographer</th>   {{!-- Column for the photographer name --}}
+            <th>Picture</th>       {{!-- Column for the photo image --}}
+        </tr>
+    </thead>
+    <tbody>
+        {{!-- Iterate over each photo in the gallery and render a table row --}}
+        {{#each singleGallery.photos}}
+        <tr>
+            <td>{{title}}</td>                               {{!-- Display the photo title --}}
+            <td>{{photographer}}</td>                        {{!-- Display the photographer's name --}}
+            <td><img src="{{image}}" class="pictures"></td>  {{!-- Display the photo image --}}
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{else}}
+{{!-- Display a message if the gallery has no photos --}}
+<h3 class="ui message">
+    Empty gallery!
+</h3>
+{{/if}}

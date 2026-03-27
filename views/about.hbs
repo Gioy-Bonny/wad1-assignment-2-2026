@@ -1,0 +1,118 @@
+{{!--
+    About page view.
+    Displays project information, app metadata, and working group member cards.
+    Includes modals for the app logo and a map of the app's location.
+--}}
+
+{{> menu id="about"}} {{!-- Render the shared navigation menu partial with the about ID --}}
+<script>"/public/script.js"</script> {{!-- Load the public script for modal interactions --}}
+
+<section class="ui center aligned middle aligned segment">
+
+    <h2>About This Project</h2>
+    <p>
+        This project is a simple photo gallery application built using Node.js, Express, and Handlebars.
+        It allows users to view and manage their photo collections in an organized manner.
+    </p>
+    <p>
+        The application features a user-friendly interface,
+        making it easy for users to navigate through their galleries and view their photos.
+        It also includes functionality for adding new photos, creating albums,
+        and organizing photos into different categories.
+    </p>
+
+    {{!-- App metadata statistics section (title, version, location) --}}
+    <div class="ui three statistics" style="margin-top: 1em;">
+        <div class="statistic">
+            <div class="value">
+                <i id="cameraButton" class="camera icon" style="cursor:pointer;"></i> {{!-- Clickable camera icon triggers the logo modal --}}
+            </div>
+            <div class="label">
+                App Title: <br>
+                {{info.appTitle}} {{!-- Display the app title from the info model --}}
+            </div>
+        </div>
+        <div class="statistic">
+            <div class="value">
+                <i class="code icon"></i>
+            </div>
+            <div class="label">
+                App Version: <br>
+                Version {{info.version}} {{!-- Display the app version from the info model --}}
+            </div>
+        </div>
+        <div class="statistic">
+            <div class="value">
+                <i id="mapButton" class="map icon" style="cursor:pointer;"></i> {{!-- Clickable map icon triggers the map modal --}}
+            </div>
+            <div class="label">
+                Made in: <br>
+                {{info.location}} {{!-- Display the app location from the info model --}}
+            </div>
+        </div>
+    </div>
+
+    <div class="ui container">
+
+        {{!-- Display the first working group member as a highlighted featured card --}}
+        {{#each workingGroup}}
+        {{#if @first}}
+        <div class="ui centered card" style="margin: 2em auto; width: 300px;">
+            <div class="image">
+                <img src="{{image}}"> {{!-- Display the member's profile image --}}
+            </div>
+            <div class="content">
+                <a class="header">{{fullname}}</a> {{!-- Display the member's full name --}}
+                <div class="description">
+                    {{fullname}} is an {{job}} living in {{city}}. {{!-- Display the member's job and city --}}
+                </div>
+            </div>
+        </div>
+        {{/if}}
+        {{/each}}
+
+        {{!-- Display the remaining working group members as a responsive grid of cards --}}
+        <div class="ui four stackable cards">
+            {{#each workingGroup}}
+            {{#unless @first}}
+            <div class="ui card">
+                <div class="image">
+                    <img src="{{image}}"> {{!-- Display the member's profile image --}}
+                </div>
+                <div class="content">
+                    <a class="header">{{fullname}}</a> {{!-- Display the member's full name --}}
+                    <div class="description">
+                        {{fullname}} is an {{job}} living in {{city}}. {{!-- Display the member's job and city --}}
+                    </div>
+                </div>
+            </div>
+            {{/unless}}
+            {{/each}}
+        </div>
+
+    </div>
+</section>
+
+{{!-- Logo modal: displayed when the camera icon is clicked --}}
+<div id="logoModal" class="modal">
+    <span class="close">&times;</span> {{!-- Close button for the logo modal --}}
+    <img class="modal-content" id="logoImage"> {{!-- Dynamically populated logo image --}}
+</div>
+
+{{!-- Map modal: displayed when the map icon is clicked --}}
+<div id="mapModal" class="modal">
+    <span class="closeMap" style="position:absolute;
+            right:40px;
+            top:20px;
+            color:white;
+            font-size:40px;
+            cursor:pointer;">
+        &times; {{!-- Close button for the map modal --}}
+    </span>
+
+    {{!-- Embedded Google Maps iframe showing the app's location --}}
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22326.87313961726!2d8.8438317!3d45.61347455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47868b905086b443%3A0x4618bcf6838e9e6e!2s21052%20Busto%20Arsizio%2C%20VA%2C%20Italy!5e0!3m2!1sen!2sie!4v1772728286078!5m2!1sen!2sie"
+        width="80%" height="450" style="border:0; display:block; margin:auto;" loading="lazy"></iframe>
+
+</div>

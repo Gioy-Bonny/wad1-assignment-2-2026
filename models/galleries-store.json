@@ -1,0 +1,58 @@
+{
+    "galleries": [
+        {
+            "id": "01",
+            "title": "Portair",
+            "photos": [
+                {
+                    "id": "04",
+                    "title": "Golden Hour Portrait",
+                    "photographer": "Gioelli",
+                    "image":"/galleries-store/GoldenHourPortrait.png"
+                },
+                {
+                    "id": "05",
+                    "title": "Urban Confidence",
+                    "photographer": "Gioelli",
+                    "image":"/galleries-store/UrbanConfidence.png"
+                },
+                {
+                    "id": "06",
+                    "title": "Wisdom in Autumn",
+                    "photographer": "Gioelli",
+                    "image": "/galleries-store/WisdominAutumn.png"
+                }
+            ]
+        },
+        {
+            "id": "02",
+            "title": "Landscape",
+            "photos": [
+                {
+                    "id": "07",
+                    "title": "Mirror Lake Mountains",
+                    "photographer": "Giorgini",
+                    "image":"/galleries-store/MirrorLakeMountains.png"
+                },
+                {
+                    "id": "08",
+                    "title": "Sunset Ocean Cliffs",
+                    "photographer": "Giorgini",
+                    "image":"/galleries-store/SunsetOceanCliffs.png"
+                },
+                {
+                    "id": "09",
+                    "title": "Misty Forest Sunrise",
+                    "photographer": "Giorgini",
+                    "image":"/galleries-store/MistyForestSunrise.png"
+
+                }
+            ]
+        },
+        {
+            "id": "03",
+            "title": "Street",
+            "photos": []
+        }
+    ]
+}

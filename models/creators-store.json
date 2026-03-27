@@ -1,0 +1,34 @@
+{
+    "workingGroup": [
+        {
+            "fullname": "Giorgio Rossi",
+            "image": "/creators-store/giorgio.png",
+            "job": "Web Developer",
+            "city": "Busto Arsizio(Va), Italy"
+        },
+        {
+            "fullname": "George Johnson",
+            "image": "/creators-store/george.png",
+            "job": "SEO Specialist",
+            "city": "Llanfairpwllgwyngyll Wales, UK"
+        },
+        {
+            "fullname": "Georges Rousseau",
+            "image": "/creators-store/georges.png",
+            "job": "Développeur Web",
+            "city": "Oô, France"
+        },
+        {
+            "fullname": "Jorge Martinez",
+            "image": "/creators-store/jorge.png",
+            "job": "Front-End Developer",
+            "city": "Oô, France"
+        },
+        {
+            "fullname": "Seóirse  O'Brien",
+            "image": "/creators-store/Seóirse.png",
+            "job": "Content Writer",
+            "city": "Dublin, Ireland"
+        }
+    ]
+}
