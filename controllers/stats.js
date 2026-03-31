@@ -1,22 +1,10 @@
-'use strict';
-
-/*
- * Controller for the Start/Welcome page.
- * Handles rendering the initial landing view of the Photo Gallery app.
- */
-
+"use strict";
 import logger from "../utils/looger.js";
 import GalleriesStore from "../models/galleries-store.js";
 
-const start = {
-
-    /*
-     * Creates and renders the Start page view.
-     * Assembles the view data with a welcome title and renders the "start" template.
-     */
+const stats = {
     createView(request, response) {
-        logger.debug("Creating start view"); // Log when the start view is being created
-
+        logger.info("Stats page loading!");
         const galleries = GalleriesStore.getAllGalleries();
 
         let numGalleries = galleries.length;
@@ -32,15 +20,13 @@ const start = {
             displayAverage: average
         }
 
-
         const viewData = {
-            title: "Welcome to the Photo Gallery app!", // Set the welcome page title
+            title: "Gallery App Statistics",
             stats: statistics
-
         };
 
-        response.render("start", viewData); // Render the start view with the prepared data
+        response.render("stats", viewData);
     },
 };
 
-export default start;
+export default stats;
