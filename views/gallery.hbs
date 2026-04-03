@@ -1,13 +1,24 @@
-{{!--
+    {{!--
     Single Gallery page view.
     Displays the title and contents of a specific gallery using the listGallery partial.
---}}
+    --}}
 
-{{> menu}} {{!-- Render the shared navigation menu partial --}}
+    {{> menu}} {{!-- Render the shared navigation menu partial --}}
 
-<section id="gallery" class="ui center aligned middle aligned segment">
-    <h2 id="gallery" class="ui header">
-        {{singleGallery.title}} {{!-- Display the title of the selected gallery --}}
-    </h2>
-    {{> listGallery}} {{!-- Render the listGallery partial to display the gallery photos --}}
-</section>
+    <section id="gallery" class="ui center aligned middle aligned segment">
+        <h2 id="gallery" class="ui header">
+            {{singleGallery.title}} {{!-- Display the title of the selected gallery --}}
+        </h2>
+
+        {{> listGallery}} {{!-- Render the listGallery partial to display the gallery photos --}}
+    
+    </section>
+
+    <section class="ui center aligned middle aligned segment">
+
+        {{> addPhoto}} {{!-- Render the addPhoto partial to provide a form for adding new photos to the gallery --}}
+
+    </section>  
+
+
+

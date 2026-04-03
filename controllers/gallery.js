@@ -7,6 +7,7 @@
 
 import logger from "../utils/looger.js";
 import galleryStore from "../models/galleries-store.js";
+import { v4 as uuidv4 } from 'uuid';
 
 const gallery = {
 
@@ -26,6 +27,19 @@ const gallery = {
         };
 
         response.render('gallery', viewData); // Render the gallery view with the retrieved data
+    },
+
+    addPhoto(request, response) {
+        const galleryId = request.params.id;
+        const gallery = galleryStore.getGallery(galleryId);
+        const newPhoto = {
+            id: uuidv4(),
+            title: request.body.title,
+            photographer: request.body.photographer,
+            image: request.body.url
+        };
+        galleryStore.addPhoto(galleryId, newPhoto);
+        response.redirect('/gallery/' + galleryId);
     },
 };
 

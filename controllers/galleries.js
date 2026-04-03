@@ -7,6 +7,7 @@
 
 import logger from "../utils/looger.js";
 import galleriesStore from '../models/galleries-store.js';
+import { v4 as uuidv4 } from 'uuid';
 
 const galleries = {
 
@@ -26,6 +27,17 @@ const galleries = {
         logger.debug(viewData.galleries);          // Log the galleries data for debugging
         response.render("galleries", viewData);    // Render the galleries view with the prepared data
     },
+
+    addGallery(request, response) {
+        const newGallery = {
+            id: uuidv4(),
+            title: request.body.title,
+            photos: [],
+        };
+        galleriesStore.addGallery(newGallery);
+        response.redirect('/dashboard');
+    },
+
 };
 
 export default galleries;

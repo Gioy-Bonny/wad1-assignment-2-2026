@@ -35,10 +35,13 @@
         <h4>
             {{photos.length}} photos {{!-- Display the total number of photos in the gallery --}}
         </h4>
-        <a href="/gallery/{{id}}"> View </a> {{!-- Link to the individual gallery page using its ID --}}
+        <a href="/gallery/{{id}}"><i class = "ui big open folder outline wihte icon"></i> </a> {{!-- Link to the individual gallery page using its ID --}}
     </section>
     {{/if}}
 
     {{/each}}
 
+    <section class="ui center aligned middle aligned segment">
+        {{> addGalleries}} {{!-- Render the addGalleries partial to provide a form for adding new galleries --}}
+    </section>
 </div>

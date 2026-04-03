@@ -31,4 +31,9 @@ router.get('/gallery/:id', gallery.createView);// Single gallery page, dynamic I
 
 router.get('/error', (request, response) => response.status(404).end('Page not found.')); // Catch-all error route returning a 404 response
 
+
+router.post('/playlist/:id/addsong', gallery.addPhoto);// Route for adding a new photo to a specific gallery, identified by its ID
+
+router.post('/dashboard/addplaylist', galleries.addGallery);// Route for adding a new gallery to the dashboard
+
 export default router;

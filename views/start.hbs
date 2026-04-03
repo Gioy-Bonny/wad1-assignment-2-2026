@@ -1,10 +1,11 @@
 {{!--
-    Start/Welcome page view.
-    Displays the app logo and a welcome message to the user.
+Start/Welcome page view.
+Displays the app logo, a welcome message, and live gallery statistics to the user.
 --}}
 
 {{> menu}} {{!-- Render the shared navigation menu partial --}}
 
+{{!-- Welcome section with app logo and description --}}
 <section class="ui center aligned middle aligned segment">
     <img src="/PG_logo.png" alt="App Logo" style="width: 500px; height: auto;"> {{!-- Display the app logo --}}
     <h2>Welcome to the Photo Gallery App!</h2>
@@ -12,24 +13,18 @@
         This app will allow users to create and maintain a collection of photo galleries.
     </p>
 
-</section>
-
-<section class="ui center aligned middle aligned segment">
-
+    {{!-- Statistics section displaying total galleries, total photos, and average photos per gallery --}}
     <h2>Gallery App Statistics</h2>
+    <h3 class="ui header">App Statistics</h3>
+    <p>The gallery app now contains:</p>
 
-    <h3 class="ui header">
-        App Statistics
-    </h3>
-    <p>
-        The gallery app now contains:
-    </p>
+    {{!-- Bind the stats object from the controller view data --}}
     {{#with stats}}
     <div class="ui center aligned grid">
-
         <div class="ui sixteen wide column">
-
             <div class="ui centered three statistics">
+
+                {{!-- Total number of galleries --}}
                 <div class="ui statistic">
                     <div class="value">
                         <i class="photo video icon"></i>
@@ -39,6 +34,7 @@
                     </div>
                 </div>
 
+                {{!-- Total number of photos across all galleries --}}
                 <div class="ui red statistic">
                     <div class="value">
                         <i class="camera icon"></i>
@@ -48,6 +44,7 @@
                     </div>
                 </div>
 
+                {{!-- Average number of photos per gallery --}}
                 <div class="ui blue statistic">
                     <div class="value">
                         <i class="balance scale icon"></i>
@@ -61,4 +58,5 @@
         </div>
     </div>
     {{/with}}
+
 </section>

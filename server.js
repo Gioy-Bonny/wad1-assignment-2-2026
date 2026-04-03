@@ -10,11 +10,13 @@ import { create } from 'express-handlebars';
 import express from 'express';
 import routes from './routes.js';
 import logger from './utils/looger.js';
+import bodyParser from "body-parser";
 
 const app = express();       // Initialise the Express application
 const port = 3000;           // Define the port number for the server
 
 app.use(express.static("public")); // Serve static files (CSS, JS, images) from the "public" directory
+app.use(bodyParser.urlencoded({ extended: false, })); // Middleware to parse URL-encoded bodies (form submissions)
 
 /*
  * Configure the Handlebars view engine.
