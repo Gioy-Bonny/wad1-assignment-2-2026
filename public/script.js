@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const mapModal = document.getElementById("mapModal")
     const mapButton = document.getElementById("mapButton")
     const closeMap = document.querySelector(".closeMap")
-    
+
     cameraButton.onclick = function () {
         modal.style.display = "block"
         modalImg.src = "PG_logo.png"
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mapModal.style.display = "none"
     })
 })
-document.querySelector("#{{id}}").classList.add("active"); 
 
+document.querySelector("#{{id}}").classList.add("active");
 
-
+$('.ui.rating').rating('disable');

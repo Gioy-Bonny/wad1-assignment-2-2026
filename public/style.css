@@ -36,9 +36,11 @@ i {
     color: #E6EAF2;
 }
 
-.statistic .label {
-    color: #3A86FF !important;
+/* Override for rating stars specifically */
+.ui.rating .icon {
+    color: #245bc9 !important; /* inactive stars */
 }
+
 
 p {
     font-size: medium;

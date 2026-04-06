@@ -18,14 +18,25 @@ const port = 3000;           // Define the port number for the server
 app.use(express.static("public")); // Serve static files (CSS, JS, images) from the "public" directory
 app.use(bodyParser.urlencoded({ extended: false, })); // Middleware to parse URL-encoded bodies (form submissions)
 
+const handlebars = create({
+    extname: '.hbs',
+    helpers: {
+        highlightPopular: (rating) => {
+            let message = rating >= 4 ? "Popular with listeners!" : "";
+            return message;
+        },
+
+    },
+});
+app.engine(".hbs", handlebars.engine);
+app.set("view engine", ".hbs");
+
 /*
  * Configure the Handlebars view engine.
  * Sets .hbs as the file extension for all view templates.
  */
-const handlebars = create({ extname: '.hbs' }); // Create a Handlebars instance with .hbs extension
 app.engine(".hbs", handlebars.engine);           // Register the Handlebars engine with Express
 app.set("view engine", ".hbs");                  // Set Handlebars as the default view engine
-
 app.use("/", routes); // Mount all application routes defined in routes.js
 
 /*

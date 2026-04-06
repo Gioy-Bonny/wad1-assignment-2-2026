@@ -1,0 +1,61 @@
+<section class="ui center aligned middle aligned segment">
+    <h2>Photo Gallery Dashboard</h2>
+    <p>
+        Photo galleries will be displayed here
+    </p>
+</section>
+
+<div id="galleries">
+
+    {{#unless galleries}}
+    <h1 class="ui center aligned header" id="no_galleries">Create galleries!</h1>
+    {{/unless}}
+
+    {{#each galleries}}
+    <section class="ui center aligned middle aligned segment" id="gallery">
+
+        <h1 class="ui header">
+            {{title}}
+        </h1>
+        <h3>
+            <p>Photographer: {{photographer}}</p> {{!-- Display the photographer from the first photo --}}
+        </h3>
+
+        <p>
+            <i class="camera icon"></i>
+            {{#if photos}}
+            Total Photos:
+            {{photos.length}}
+
+            {{else}}
+            Empty gallery!
+            {{/if}}
+
+            {{#if date}}
+            <br>
+            <i class="calendar alternate outline icon"></i>
+            Created on <i>{{date}}</i>
+            {{/if}}
+        </p>
+        
+        {{#if rating}}
+        <p>
+            <span class="ui rating" data-icon="star" data-rating="{{rating}}" data-max-rating="5">
+            </span>
+
+            <span style="color: rgb(184, 180, 180); font-size: 90%; font-style: italic">
+                {{highlightPopular rating}}
+            </span>
+        </p>
+        {{/if}}
+
+
+        <a href="/gallery/{{id}}"><i class="ui big open folder outline wihte icon"></i> </a> {{!-- Link to the
+        individual gallery page using its ID --}}
+        <a href="/galleries/deleteGallery/{{id}}">{{!-- Link to delete the gallery using its ID --}}
+            <i class="ui big trash white icon"></i>
+        </a>
+    </section>
+    {{/each}}
+</div>
+</section>

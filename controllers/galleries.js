@@ -29,13 +29,26 @@ const galleries = {
     },
 
     addGallery(request, response) {
+        const timestamp = new Date();
         const newGallery = {
             id: uuidv4(),
             title: request.body.title,
+            photographer: request.body.photographer,
+            date: timestamp.toLocaleString(),
+            rating: parseInt(request.body.rating) || 0, // Default to 0 if no rating is provided
             photos: [],
         };
         galleriesStore.addGallery(newGallery);
-        response.redirect('/dashboard');
+        response.redirect('/galleries');
+    },
+
+    deleteGallery(request, response) { // Extract the gallery ID from the URL params
+        const galleryId = request.params.id;// Log the ID of the gallery being deleted
+        
+        logger.debug(`Deleting Gallery ${galleryId}`);// Remove the gallery from the store using its ID
+        
+        galleriesStore.removeGallery(galleryId);
+        response.redirect("/galleries");
     },
 
 };

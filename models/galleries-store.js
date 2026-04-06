@@ -31,16 +31,33 @@ const galleryStore = {
     * Adds a new photo to a specific gallery.
     * Takes the gallery ID and the new photo object, and adds the photo to the gallery's photos array in the store.
     */
-    addSong(id, song) {
-        this.store.addItem(this.collection, id, this.array, song);
+    addPhoto(id, photos) {
+        this.store.addItem(this.collection, id, this.array, photos);
     },
     /*
     * Adds a new gallery to the store.
     * Takes a gallery object and adds it to the 'galleries' collection in the JSON store.
     */
-    addPlaylist(playlist) {
-        this.store.addCollection(this.collection, playlist);
+    addGallery(gallery) {
+        this.store.addCollection(this.collection, gallery);
     },
+
+    /*
+    * Removes a song from a specific gallery.
+    * Takes the gallery ID and the photo ID, and removes the photo from the gallery's photos array in the store.
+    */
+    removePhoto(id, galleryId) {
+        this.store.removeItem(this.collection, id, this.array, galleryId);
+    },
+    /*
+    * Removes a gallery from the store.
+    * Takes the gallery ID, finds the corresponding gallery in the 'galleries' collection, and removes it from the store.
+    */
+    removeGallery(id) {
+        const gallery = this.getGallery(id);
+        this.store.removeCollection(this.collection, gallery);
+    },
+
 
 };
 

@@ -1,58 +1,23 @@
 {
-    "galleries": [
+  "galleries": [
+    {
+      "id": "01",
+      "title": "Portair",
+      "photographer": "John Doe",
+      "date": "6/4/2026, 12:55:38",
+      "rating": 2,
+      "photos": [
         {
-            "id": "01",
-            "title": "Portair",
-            "photos": [
-                {
-                    "id": "04",
-                    "title": "Golden Hour Portrait",
-                    "photographer": "Gioelli",
-                    "image":"/galleries-store/GoldenHourPortrait.png"
-                },
-                {
-                    "id": "05",
-                    "title": "Urban Confidence",
-                    "photographer": "Gioelli",
-                    "image":"/galleries-store/UrbanConfidence.png"
-                },
-                {
-                    "id": "06",
-                    "title": "Wisdom in Autumn",
-                    "photographer": "Gioelli",
-                    "image": "/galleries-store/WisdominAutumn.png"
-                }
-            ]
+          "id": "04",
+          "title": "Golden Hour Portrait",
+          "image": "/galleries-store/GoldenHourPortrait.png"
         },
         {
-            "id": "02",
-            "title": "Landscape",
-            "photos": [
-                {
-                    "id": "07",
-                    "title": "Mirror Lake Mountains",
-                    "photographer": "Giorgini",
-                    "image":"/galleries-store/MirrorLakeMountains.png"
-                },
-                {
-                    "id": "08",
-                    "title": "Sunset Ocean Cliffs",
-                    "photographer": "Giorgini",
-                    "image":"/galleries-store/SunsetOceanCliffs.png"
-                },
-                {
-                    "id": "09",
-                    "title": "Misty Forest Sunrise",
-                    "photographer": "Giorgini",
-                    "image":"/galleries-store/MistyForestSunrise.png"
-
-                }
-            ]
-        },
-        {
-            "id": "03",
-            "title": "Street",
-            "photos": []
+          "id": "06",
+          "title": "Wisdom in Autumn",
+          "image": "/galleries-store/WisdominAutumn.png"
         }
-    ]
+      ]
+    }
+  ]
 }

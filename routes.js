@@ -28,12 +28,12 @@ router.get('/', start.createView);                // Home/Start page
 router.get('/galleries', galleries.createView);  // Galleries dashboard page
 router.get('/about', about.createView);         // About page
 router.get('/gallery/:id', gallery.createView);// Single gallery page, dynamic ID param
-
+router.get('/gallery/:id/deletePhoto/:photoid', gallery.deletePhoto); // Route for deleting a specific photo from a gallery, identified by gallery ID and photo ID
+router.get('/galleries/deleteGallery/:id', galleries.deleteGallery); // Route for deleting a specific gallery from the dashboard, identified by gallery ID
+    
 router.get('/error', (request, response) => response.status(404).end('Page not found.')); // Catch-all error route returning a 404 response
 
-
-router.post('/playlist/:id/addsong', gallery.addPhoto);// Route for adding a new photo to a specific gallery, identified by its ID
-
-router.post('/dashboard/addplaylist', galleries.addGallery);// Route for adding a new gallery to the dashboard
+router.post('/gallery/{{id}}/addPhoto', gallery.addPhoto);// Route for adding a new photo to a specific gallery, identified by its ID
+router.post('/galleries/addGallery', galleries.addGallery);// Route for adding a new gallery to the dashboard
 
 export default router;
