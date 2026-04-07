@@ -27,6 +27,10 @@ const galleryStore = {
     getGallery(id) {
         return this.store.findOneBy(this.collection, (gallery => gallery.id === id)); // Find and return the gallery matching the given ID
     },
+    getPhoto(galleryId, photoId) {
+        const gallery = this.getGallery(galleryId);
+        return gallery.photos.find(photo => photo.id === photoId);
+    },
     /*
     * Adds a new photo to a specific gallery.
     * Takes the gallery ID and the new photo object, and adds the photo to the gallery's photos array in the store.
@@ -35,19 +39,26 @@ const galleryStore = {
         this.store.addItem(this.collection, id, this.array, photos);
     },
     /*
-    * Adds a new gallery to the store.
-    * Takes a gallery object and adds it to the 'galleries' collection in the JSON store.
-    */
-    addGallery(gallery) {
-        this.store.addCollection(this.collection, gallery);
-    },
-
-    /*
     * Removes a song from a specific gallery.
     * Takes the gallery ID and the photo ID, and removes the photo from the gallery's photos array in the store.
     */
     removePhoto(id, galleryId) {
         this.store.removeItem(this.collection, id, this.array, galleryId);
+    },
+    /*
+    * Updates a photo in a specific gallery.
+    * Takes the gallery ID, photo ID, and the updated photo object, and updates the corresponding photo in the gallery's photos array in the store.
+    */
+    updatePhoto(id, photoId, updatedPhoto) {
+        this.store.editItem(this.collection, id, photoId, this.array, updatedPhoto);
+    },
+
+    /*
+    * Adds a new gallery to the store.
+    * Takes a gallery object and adds it to the 'galleries' collection in the JSON store.
+    */
+    addGallery(gallery) {
+        this.store.addCollection(this.collection, gallery);
     },
     /*
     * Removes a gallery from the store.

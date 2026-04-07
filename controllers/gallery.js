@@ -37,8 +37,9 @@ const gallery = {
         const galleryId = request.params.id;
         const gallery = galleryStore.getGallery(galleryId);
         const newPhoto = {
-        id: 5,
-        title: request.body.title,
+            id: uuidv4(),
+            title: request.body.title,
+            image: request.body.image,
         };
         galleryStore.addPhoto(galleryId, newPhoto);
         response.redirect('/gallery/' + galleryId);
@@ -51,12 +52,29 @@ const gallery = {
     deletePhoto(request, response) { // Extract the gallery ID and photo ID from the URL params
         const galleryId = request.params.id;// Extract the gallery ID from the URL params
         const photoId = request.params.photoid;// Extract the photo ID from the URL params
-        
+
         logger.debug(`Deleting Photo ${photoId} from Gallery ${galleryId}`);// Log the IDs of the gallery and photo being deleted
-        
+
         galleryStore.removePhoto(galleryId, photoId);// Remove the photo from the gallery in the store
-        response.redirect(`/gallery/${galleryId}` );// Redirect back to the gallery view to show the updated gallery without the deleted photo
+        response.redirect(`/gallery/${galleryId}`);// Redirect back to the gallery view to show the updated gallery without the deleted photo
     },
+
+
+    updatePhoto(request, response) {
+        const galleryId = request.params.id;
+        const photoId = request.params.photoid;
+        logger.debug("updating photo " + photoId);
+
+         const existingPhoto = galleryStore.getPhoto(galleryId, photoId);
+
+        const updatedPhoto = {
+            id: photoId,
+            title: request.body.title,
+            image: existingPhoto.image
+        };
+        galleryStore.updatePhoto(galleryId, photoId, updatedPhoto);
+        response.redirect('/gallery/' + galleryId);
+    }
 };
 
 export default gallery;

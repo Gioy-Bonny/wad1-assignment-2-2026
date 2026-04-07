@@ -1,0 +1,19 @@
+<tr id="photo{{@index}}">
+    <td>
+        {{title}}
+    </td>
+    <td>
+        {{image}}
+    </td>
+    <td>
+        <button title="Edit song" class="editSubmit" id="showEdit{{@index}}" data-index="{{@index}}">
+            <i class="ui pencil icon"></i>
+        </button>
+
+    </td>
+    <td>
+        <a href="/gallery/{{galleryId}}/deletephoto/{{id}}" title="Delete photo">
+            <i class="ui white trash icon"></i>
+        </a>
+    </td>
+</tr>

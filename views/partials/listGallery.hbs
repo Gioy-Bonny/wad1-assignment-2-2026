@@ -6,29 +6,35 @@ Shows a message if the gallery is empty.
 
 {{!-- Only render the table if the gallery contains photos --}}
 {{#if singleGallery.photos}}
-
+<script>"/public/script.js"</script>
 <table class="ui stackable table">
     <thead>
         <tr>
-            <th>Picture</th> {{!-- Column for the photo title --}}
-            <th>Phtographer</th> {{!-- Column for the photographer name --}}
+            <th>Title</th> {{!-- Column for the photo title --}}
             <th>Picture</th> {{!-- Column for the photo image --}}
         </tr>
     </thead>
     <tbody>
-        {{!-- Iterate over each photo in the gallery and render a table row --}}
         {{#each singleGallery.photos}}
-        <tr>
-            <td>{{title}}</td> {{!-- Display the photo title --}}
-            <td>{{../singleGallery.photographer}}</td> {{!-- Display the photographer's name --}}
-            <td>{{image}}</td> {{!-- Display the photo image --}}
-            
-            <td> {{!-- Add a delete button for each photo --}}
-                <a href="/gallery/{{../singleGallery.id}}/deletePhoto/{{id}}" title="Delete photo">
-                    <i class="ui white trash icon"></i>
-                </a>
-            </td>
-        </tr>
+        {{> listOnePhoto galleryId=../singleGallery.id}}
+        {{> editPhoto galleryId=../singleGallery.id}}
+        <script>
+        document.addEventListener('click', (e) => {
+
+        if (e.target.closest('.editSubmit')) {
+        const index = e.target.closest('.editSubmit').dataset.index;
+        document.querySelector(`#photo${index}`).style.display = 'none';
+        document.querySelector(`#edit${index}`).style.display = 'table-row';
+        }
+
+        if (e.target.closest('.hideEdit')) {
+        const index = e.target.closest('.hideEdit').dataset.index;
+        document.querySelector(`#photo${index}`).style.display = 'table-row';
+        document.querySelector(`#edit${index}`).style.display = 'none';
+        }
+
+        });
+        </script>
         {{/each}}
     </tbody>
 </table>

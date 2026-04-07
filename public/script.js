@@ -30,3 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
 document.querySelector("#{{id}}").classList.add("active");
 
 $('.ui.rating').rating('disable');
+
+
+

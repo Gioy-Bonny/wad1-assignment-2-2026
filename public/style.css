@@ -38,7 +38,8 @@ i {
 
 /* Override for rating stars specifically */
 .ui.rating .icon {
-    color: #245bc9 !important; /* inactive stars */
+    color: #245bc9 !important;
+    /* inactive stars */
 }
 
 
@@ -148,24 +149,34 @@ p {
     padding: 40px;
 }
 
-.ui.table{
+.ui.table {
     background-color: #1A1D24;
     color: white;
     text-align: center;
-    
+
 }
-thead{
-        font-weight: bolder;
+
+thead {
+    font-weight: bolder;
     font-size: large;
 
 }
-tbody{
+
+tbody {
     font-weight: bolder;
     font-size: x-large;
 }
 
-.pictures{
+.pictures {
     width: 300px;
     height: auto;
 }
 
+.editSubmit {
+    border: none;
+    background: none;
+}
+
+.hide{
+    display: none;
+}

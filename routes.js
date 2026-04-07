@@ -33,7 +33,8 @@ router.get('/galleries/deleteGallery/:id', galleries.deleteGallery); // Route fo
     
 router.get('/error', (request, response) => response.status(404).end('Page not found.')); // Catch-all error route returning a 404 response
 
-router.post('/gallery/{{id}}/addPhoto', gallery.addPhoto);// Route for adding a new photo to a specific gallery, identified by its ID
+router.post('/gallery/:id/addPhoto', gallery.addPhoto);// Route for adding a new photo to a specific gallery, identified by its ID
 router.post('/galleries/addGallery', galleries.addGallery);// Route for adding a new gallery to the dashboard
+router.post('/gallery/:id/updatePhoto/:photoid', gallery.updatePhoto);
 
 export default router;
