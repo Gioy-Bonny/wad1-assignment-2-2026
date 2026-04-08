@@ -3,31 +3,44 @@
     {
       "id": "01",
       "title": "Portair",
+      "photographer": "Jane Doe",
+      "rating": 4,
       "photos": [
         {
           "id": "06",
-          "title": "Wisdom in Autumn"
+          "title": "Wisdom in Autumn",
+          "image": "/galleries-store/WisdomInAutumn.png"
         }
       ]
     },
     {
       "id": "02",
       "title": "Landscape",
+      "photographer": "John Doe",
+      "rating": 5,
       "photos": [
         {
           "id": "07",
-          "title": "Mirror Lake Mountains"
+          "title": "Mirror Lake Mountains",
+          "image": "/galleries-store/MirrorLakeMountains.png"
         },
         {
           "id": "08",
           "title": "Sunset Ocean Cliffs]",
           "image": "/galleries-store/SunsetOceanCliffs.png"
+        },
+        {
+          "id": "09",
+          "title": "Mirror Lake Mountains",
+          "image": "/galleries-store/MirrorLakeMountains.png"
         }
       ]
     },
     {
       "id": "03",
       "title": "Street",
+      "photographer": "John Doe",
+      "rating": 3,
       "photos": []
     },
     {
@@ -36,7 +49,23 @@
       "photographer": "ffff",
       "date": "7/4/2026, 10:50:46",
       "rating": 5,
-      "photos": []
+      "photos": [
+        {
+          "id": "852f5f98-b29e-436c-b4b3-4429b227448b",
+          "title": "hhhhh",
+          "image": "hhhh"
+        },
+        {
+          "id": "84bd6e7b-6e93-4dbd-a573-0f1bfc776d0a",
+          "title": "hhhh",
+          "image": "hhh"
+        },
+        {
+          "id": "8e394df7-08fe-4db4-b06a-6aa24d61dde4",
+          "title": "h",
+          "image": "hhh"
+        }
+      ]
     }
   ]
 }

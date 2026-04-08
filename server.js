@@ -9,7 +9,7 @@
 import { create } from 'express-handlebars';
 import express from 'express';
 import routes from './routes.js';
-import logger from './utils/looger.js';
+import logger from './utils/logger.js';
 import bodyParser from "body-parser";
 
 const app = express();       // Initialise the Express application
@@ -25,12 +25,12 @@ const handlebars = create({
             let message = rating >= 4 ? "Popular with listeners!" : "";
             return message;
         },
-
+        isImage: (image) => {
+            if (!image) return false;
+            return /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(image);
+        },
     },
 });
-app.engine(".hbs", handlebars.engine);
-app.set("view engine", ".hbs");
-
 /*
  * Configure the Handlebars view engine.
  * Sets .hbs as the file extension for all view templates.

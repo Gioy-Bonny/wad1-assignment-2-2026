@@ -5,7 +5,7 @@
  * Handles rendering the about view with application and creator information.
  */
 
-import logger from "../utils/looger.js";
+import logger from "../utils/logger.js";
 import appInfo from "../models/app-info.js";
 import creatorStore from "../models/creators-store.js";
 

@@ -5,7 +5,7 @@
  * Handles rendering a single gallery view based on the gallery ID from the request.
  */
 
-import logger from "../utils/looger.js";
+import logger from "../utils/logger.js";
 import galleryStore from "../models/galleries-store.js";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -65,7 +65,7 @@ const gallery = {
         const photoId = request.params.photoid;
         logger.debug("updating photo " + photoId);
 
-         const existingPhoto = galleryStore.getPhoto(galleryId, photoId);
+        const existingPhoto = galleryStore.getPhoto(galleryId, photoId);
 
         const updatedPhoto = {
             id: photoId,

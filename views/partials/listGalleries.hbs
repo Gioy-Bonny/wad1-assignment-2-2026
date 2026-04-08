@@ -17,8 +17,16 @@
         <h1 class="ui header">
             {{title}}
         </h1>
+
+        {{#if (isImage photos.[0].image)}}
+            <img src="{{photos.[0].image}}" alt="{{photos.[0].title}}" style="width: 300px; height: auto;">
+            {{!-- Display the first photo in the gallery as a thumbnail --}}
+        {{else}}
+        <p>No valid image available</p>
+        {{/if}}
+        
         <h3>
-            <p>Photographer: {{photographer}}</p> {{!-- Display the photographer from the first photo --}}
+            <p>Photographer: {{photographer}}</p>
         </h3>
 
         <p>
@@ -37,25 +45,20 @@
             Created on <i>{{date}}</i>
             {{/if}}
         </p>
-        
+
         {{#if rating}}
         <p>
-            <span class="ui rating" data-icon="star" data-rating="{{rating}}" data-max-rating="5">
-            </span>
-
-            <span style="color: rgb(184, 180, 180); font-size: 90%; font-style: italic">
-                {{highlightPopular rating}}
+            <span class="ui big blue disabled rating" data-icon="star" data-rating="{{rating}}" data-max-rating="5">
             </span>
         </p>
         {{/if}}
 
 
-        <a href="/gallery/{{id}}"><i class="ui big open folder outline wihte icon"></i> </a> {{!-- Link to the
-        individual gallery page using its ID --}}
-        <a href="/galleries/deleteGallery/{{id}}">{{!-- Link to delete the gallery using its ID --}}
-            <i class="ui big trash white icon"></i>
+
+        <a href="/gallery/{{id}}"><i class="ui big open folder outline icon"></i></a>
+        <a href="/galleries/deleteGallery/{{id}}">
+            <i class="ui big trash icon"></i>
         </a>
     </section>
     {{/each}}
 </div>
-</section>

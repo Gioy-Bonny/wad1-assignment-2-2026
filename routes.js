@@ -7,7 +7,7 @@
  */
 
 import express from 'express';
-import logger from './utils/looger.js';
+import logger from './utils/logger.js';
 
 const router = express.Router(); // Initialise the Express router
 

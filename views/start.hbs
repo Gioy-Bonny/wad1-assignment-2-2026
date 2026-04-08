@@ -53,7 +53,33 @@ Displays the app logo, a welcome message, and live gallery statistics to the use
                         Average photos per <br> gallery: {{displayAverage}}
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="ui sixteen wide column">
+            <div class="ui centered two statistics">
 
+                {{!-- Average rating across all galleries --}}
+                <div class="ui green statistic">
+                    <div class="value">
+                        <i class="dot circle outline icon"></i>
+                    </div>
+                    <div class="label">
+                        Average Rating: {{displayAvgRating}}
+                    </div>
+                </div>
+                <div class="ui yellow statistic">
+                    <div class="value">
+                        <i class="star icon"></i>
+                    </div>
+                    <div class="label">
+                        Highest Rated playlists: {{highest}} stars
+                        <ul class="fav">
+                            {{#each displayFav}}
+                            <li>{{this}}</li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -5,7 +5,7 @@
  * Handles rendering the galleries view with all available photo galleries.
  */
 
-import logger from "../utils/looger.js";
+import logger from "../utils/logger.js";
 import galleriesStore from '../models/galleries-store.js';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -19,11 +19,17 @@ const galleries = {
     createView(request, response) {
         logger.info('Creating view for the galleries page.'); // Log when the view creation is triggered
 
+
+        const galleries = galleriesStore.getAllGalleries();
+        const images = galleries.flatMap(gallery => gallery.photos.map(photo => photo.image));
+        const randomImage = images.length > 0 ? images[Math.floor(Math.random() * images.length)] : null;
+
         const viewData = {
-            galleries: galleriesStore.getAllGalleries(), // Fetch all galleries from the store
+            galleries: galleries,
+            randomImage: randomImage,
             title: "Photo Gallery Dashboard",
         };
-
+        logger.debug(`Random Image: ${randomImage}`);
         logger.debug(viewData.galleries);          // Log the galleries data for debugging
         response.render("galleries", viewData);    // Render the galleries view with the prepared data
     },

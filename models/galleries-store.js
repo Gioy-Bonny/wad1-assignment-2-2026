@@ -5,7 +5,7 @@
 * Manages retrieval of all galleries and individual galleries from a JSON store.
 */
 
-import logger from "../utils/looger.js";
+import logger from "../utils/logger.js";
 import JsonStore from './json-store.js';
 
 const galleryStore = {
