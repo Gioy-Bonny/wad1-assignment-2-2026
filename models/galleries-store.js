@@ -69,6 +69,13 @@ const galleryStore = {
         this.store.removeCollection(this.collection, gallery);
     },
 
+    searchGalleries(search) {
+        return this.store.findBy(
+            this.collection,
+            (gallery => gallery.title.toLowerCase().includes(search.toLowerCase())))
+    }
+
+
 
 };
 

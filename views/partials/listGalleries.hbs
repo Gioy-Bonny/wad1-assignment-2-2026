@@ -5,10 +5,42 @@
     </p>
 </section>
 
+<section class="dashboard-header">
+    <form action="/searchCategory" method="GET" class="ui form">
+
+        <div class="ui inline fields">
+            <div class="field">
+                <input type="text" name="searchTerm" placeholder="Search by title..." value="{{search}}">
+            </div>
+
+            <div class="field">
+                <label>Sort by:</label>
+                <select class="ui dropdown" name="sort" onchange="this.form.submit()">
+                    <option value="title" {{#if titleSelected}}selected{{/if}}>Title</option>
+                    <option value="rating" {{#if ratingSelected}}selected{{/if}}>Rating</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Order:</label>
+                <select class="ui dropdown" name="order" onchange="this.form.submit()">
+                    <option value="asc" {{#if ascSelected}}selected{{/if}}>↑</option>
+                    <option value="desc" {{#if descSelected}}selected{{/if}}>↓</option>
+                </select>
+            </div>
+        </div>
+    </form>
+</section>
+
+
 <div id="galleries">
 
+    {{#unless search}}
     {{#unless galleries}}
-    <h1 class="ui center aligned header" id="no_galleries">Create galleries!</h1>
+    <h3 class="ui message">
+        Start adding your galleries!
+    </h3>
+    {{/unless}}
     {{/unless}}
 
     {{#each galleries}}
@@ -19,12 +51,12 @@
         </h1>
 
         {{#if (isImage photos.[0].image)}}
-            <img src="{{photos.[0].image}}" alt="{{photos.[0].title}}" style="width: 300px; height: auto;">
-            {{!-- Display the first photo in the gallery as a thumbnail --}}
+        <img src="{{photos.[0].image}}" alt="{{photos.[0].title}}" style="width: 300px; height: auto;">
+        {{!-- Display the first photo in the gallery as a thumbnail --}}
         {{else}}
         <p>No valid image available</p>
         {{/if}}
-        
+
         <h3>
             <p>Photographer: {{photographer}}</p>
         </h3>

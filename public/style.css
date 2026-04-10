@@ -143,15 +143,15 @@ tbody {
     background: none;
 }
 
-.hide{
+.hide {
     display: none;
 }
 
-.label{
+.label {
     color: white !important;
 }
 
-.fav{
+.fav {
     color: white !important;
     list-style-type: none;
     margin: 0;
@@ -159,7 +159,7 @@ tbody {
     text-decoration: underline;
 }
 
-.ui.center.aligned.grid  {
+.ui.center.aligned.grid {
     background-color: #1A1D24;
     color: #E6EAF2 !important;
     border-radius: 12px;
@@ -167,4 +167,23 @@ tbody {
 
 .ui.center.aligned.grid i.icon {
     margin-bottom: 15px;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5em;
+}
+
+.title {
+    color: #E6EAF2 !important;
+    text-decoration: underline;
+}
+
+input::placeholder {
+    color: black!important;
+}
+.dashboard-header .ui.form .field label{
+    color: #E6EAF2 !important;
 }

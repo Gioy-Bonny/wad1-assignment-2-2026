@@ -17,22 +17,48 @@ const galleries = {
      * logs relevant information, and renders the "galleries" template.
      */
     createView(request, response) {
-        logger.info('Creating view for the galleries page.'); // Log when the view creation is triggered
+        logger.info('Creating view for the galleries page.');
 
+        const searchTerm = request.query.searchTerm || "";
 
-        const galleries = galleriesStore.getAllGalleries();
-        const images = galleries.flatMap(gallery => gallery.photos.map(photo => photo.image));
-        const randomImage = images.length > 0 ? images[Math.floor(Math.random() * images.length)] : null;
+        const galleries = searchTerm
+            ? galleriesStore.searchGallery(searchTerm)
+            : galleriesStore.getAllGalleries();
+
+        const sortField = request.query.sort;
+        const order = request.query.order === "desc" ? -1 : 1;
+
+        let sorted = galleries.slice(); // Create a copy of the galleries array for sorting
+
+        if (sortField) {
+            sorted = galleries.slice().sort((a, b) => {
+                if (sortField === "title") {
+                    return a.title.localeCompare(b.title) * order;
+                }
+
+                if (sortField === "rating") {
+                    return (a.rating - b.rating) * order;
+                }
+
+                return 0;
+            });
+        }
 
         const viewData = {
-            galleries: galleries,
-            randomImage: randomImage,
             title: "Photo Gallery Dashboard",
+            galleries: sortField ? sorted : galleries,
+            search: searchTerm,
+            titleSelected: request.query.sort === "title",
+            ratingSelected: request.query.sort === "rating",
+            ascSelected: request.query.order === "asc",
+            descSelected: request.query.order === "desc",
         };
-        logger.debug(`Random Image: ${randomImage}`);
-        logger.debug(viewData.galleries);          // Log the galleries data for debugging
-        response.render("galleries", viewData);    // Render the galleries view with the prepared data
+
+        logger.debug(viewData.galleries.length + " galleries to display");
+
+        response.render("galleries", viewData);
     },
+
 
     addGallery(request, response) {
         const timestamp = new Date();
@@ -50,9 +76,9 @@ const galleries = {
 
     deleteGallery(request, response) { // Extract the gallery ID from the URL params
         const galleryId = request.params.id;// Log the ID of the gallery being deleted
-        
+
         logger.debug(`Deleting Gallery ${galleryId}`);// Remove the gallery from the store using its ID
-        
+
         galleriesStore.removeGallery(galleryId);
         response.redirect("/galleries");
     },
