@@ -11,12 +11,14 @@ import express from 'express';
 import routes from './routes.js';
 import logger from './utils/logger.js';
 import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
 
 const app = express();       // Initialise the Express application
 const port = 3000;           // Define the port number for the server
 
 app.use(express.static("public")); // Serve static files (CSS, JS, images) from the "public" directory
 app.use(bodyParser.urlencoded({ extended: false, })); // Middleware to parse URL-encoded bodies (form submissions)
+app.use(cookieParser()); // Middleware to parse cookies from incoming requests
 
 const handlebars = create({
     extname: '.hbs',

@@ -13,6 +13,7 @@ const galleryStore = {
     store: new JsonStore('./models/galleries-store.json', { galleries: [] }), // Initialise the JSON store with the galleries file
     collection: 'galleries', // The key used to access the galleries collection in the store
     array: 'photos',         // The key used to access the photos array within a gallery
+    
     /*
     * Retrieves all galleries from the JSON store.
     * Returns the full contents of the 'galleries' collection.
@@ -27,6 +28,10 @@ const galleryStore = {
     getGallery(id) {
         return this.store.findOneBy(this.collection, (gallery => gallery.id === id)); // Find and return the gallery matching the given ID
     },
+    /* 
+    * Retrieves a single photo from a specific gallery by their IDs.
+    * First retrieves the gallery using the gallery ID, then searches the gallery's photos array for a photo whose ID matches the given photo ID.
+    */
     getPhoto(galleryId, photoId) {
         const gallery = this.getGallery(galleryId);
         return gallery.photos.find(photo => photo.id === photoId);
@@ -52,7 +57,6 @@ const galleryStore = {
     updatePhoto(id, photoId, updatedPhoto) {
         this.store.editItem(this.collection, id, photoId, this.array, updatedPhoto);
     },
-
     /*
     * Adds a new gallery to the store.
     * Takes a gallery object and adds it to the 'galleries' collection in the JSON store.
@@ -68,15 +72,31 @@ const galleryStore = {
         const gallery = this.getGallery(id);
         this.store.removeCollection(this.collection, gallery);
     },
-
+    /*
+    * Searches for galleries by title.
+    * Takes a search string and returns an array of galleries whose titles include the search string (case-insensitive).
+    */
     searchGalleries(search) {
         return this.store.findBy(
             this.collection,
             (gallery => gallery.title.toLowerCase().includes(search.toLowerCase())))
-    }
-
-
-
+    },
+    /*
+    * Retrieves all galleries for a specific user.
+    * Takes a user ID and returns an array of galleries that belong to that user from the 'galleries' collection in the store.
+    */
+    getUserGalleries(userid) {
+        return this.store.findBy(this.collection, (gallery => gallery.userid === userid));
+    },
+    /*
+    * Searches for galleries by title for a specific user.
+    * Takes a search string and a user ID, and returns an array of galleries that belong to that user and whose titles include the search string (case-insensitive).
+    */
+    searchUserGalleries(search, userid) {
+        return this.store.findBy(
+            this.collection,
+            (gallery => gallery.userid === userid && gallery.title.toLowerCase().includes(search.toLowerCase())))
+    },
 };
 
 export default galleryStore;

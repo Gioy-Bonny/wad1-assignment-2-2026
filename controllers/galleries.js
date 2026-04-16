@@ -8,59 +8,67 @@
 import logger from "../utils/logger.js";
 import galleriesStore from '../models/galleries-store.js';
 import { v4 as uuidv4 } from 'uuid';
-
+import accounts from "./accounts.js";
 const galleries = {
 
-    /*
-     * Creates and renders the Galleries dashboard view.
-     * Retrieves all galleries from the store, assembles the view data,
-     * logs relevant information, and renders the "galleries" template.
-     */
+/*
+ * Creates and renders the Galleries page view.
+ * Retrieves all galleries from the store, prepares the view data and renders the "galleries" template.
+ */
     createView(request, response) {
-        logger.info('Creating view for the galleries page.');
+        logger.info("Dashboard page loading!");
 
-        const searchTerm = request.query.searchTerm || "";
+        const loggedInUser = accounts.getCurrentUser(request);
 
-        const galleries = searchTerm
-            ? galleriesStore.searchGallery(searchTerm)
-            : galleriesStore.getAllGalleries();
+        if (loggedInUser) {
+            const searchTerm = request.query.searchTerm || "";
 
-        const sortField = request.query.sort;
-        const order = request.query.order === "desc" ? -1 : 1;
+            const galleries = searchTerm
+                ? galleriesStore.searchUserGalleries(searchTerm, loggedInUser.id)
+                : galleriesStore.getUserGalleries(loggedInUser.id);
 
-        let sorted = galleries.slice(); // Create a copy of the galleries array for sorting
+            const sortField = request.query.sort;
+            const order = request.query.order === "desc" ? -1 : 1;
 
-        if (sortField) {
-            sorted = galleries.slice().sort((a, b) => {
-                if (sortField === "title") {
-                    return a.title.localeCompare(b.title) * order;
-                }
+            let sorted = galleries;
 
-                if (sortField === "rating") {
-                    return (a.rating - b.rating) * order;
-                }
+            if (sortField) {
+                sorted = galleries.slice().sort((a, b) => {
+                    if (sortField === "title") {
+                        return a.title.localeCompare(b.title) * order;
+                    }
 
-                return 0;
-            });
+                    if (sortField === "rating") {
+                        return (a.rating - b.rating) * order;
+                    }
+
+                    return 0;
+                });
+            }
+
+            const viewData = {
+                title: "Photo Galleries Dashboard",
+                fullname: loggedInUser.firstName + ' ' + loggedInUser.lastName,
+                galleries: sortField ? sorted : galleries,
+                search: searchTerm,
+                titleSelected: request.query.sort === "title",
+                ratingSelected: request.query.sort === "rating",
+                ascSelected: request.query.order === "asc",
+                descSelected: request.query.order === "desc",
+            };
+
+            logger.info('about to render' + viewData.galleries);
+
+            response.render('galleries', viewData);
         }
+        else response.redirect('/');
 
-        const viewData = {
-            title: "Photo Gallery Dashboard",
-            galleries: sortField ? sorted : galleries,
-            search: searchTerm,
-            titleSelected: request.query.sort === "title",
-            ratingSelected: request.query.sort === "rating",
-            ascSelected: request.query.order === "asc",
-            descSelected: request.query.order === "desc",
-        };
-
-        logger.debug(viewData.galleries.length + " galleries to display");
-
-        response.render("galleries", viewData);
     },
 
 
+
     addGallery(request, response) {
+        const loggedInUser = accounts.getCurrentUser(request);
         const timestamp = new Date();
         const newGallery = {
             id: uuidv4(),
@@ -69,6 +77,7 @@ const galleries = {
             date: timestamp.toLocaleString(),
             rating: parseInt(request.body.rating) || 0, // Default to 0 if no rating is provided
             photos: [],
+            userid: loggedInUser.id
         };
         galleriesStore.addGallery(newGallery);
         response.redirect('/galleries');

@@ -4,67 +4,88 @@ Displays the app logo, a welcome message, and live gallery statistics to the use
 --}}
 
 {{> menu}} {{!-- Render the shared navigation menu partial --}}
-
 {{!-- Welcome section with app logo and description --}}
 <section class="ui center aligned middle aligned segment">
     <img src="/PG_logo.png" alt="App Logo" style="width: 500px; height: auto;"> {{!-- Display the app logo --}}
-    <h2>Welcome to the Photo Gallery App!</h2>
+    <h2>The Photo Gallery App!</h2>
     <p>
-        This app will allow users to create and maintain a collection of photo galleries.
+        Welcome, {{firstName}}! Create and manage your photo galleries in one place.
     </p>
-
+<div class="ui centred four column grid">
+        <a id="changePasswordButton" class="item" href="/changepassword" style="color: black; "> Change Password </a>
+        <a id="logoutButton" class="item" href="/logout" style="color: black; "> Logout </a>
+</div>
     {{!-- Statistics section displaying total galleries, total photos, and average photos per gallery --}}
     <h2>Gallery App Statistics</h2>
     <h3 class="ui header">App Statistics</h3>
-    <p>The gallery app now contains:</p>
-
     {{!-- Bind the stats object from the controller view data --}}
     {{#with stats}}
-    <div class="ui center aligned grid">
+    <div class="ui center aligned grid" style="background-color: transparent;">
         <div class="ui sixteen wide column">
+            {{!-- First row of statistics for galleries, photos, and average photos per gallery --}}
             <div class="ui centered three statistics">
-
                 {{!-- Total number of galleries --}}
                 <div class="ui statistic">
                     <div class="value">
                         <i class="photo video icon"></i>
                     </div>
                     <div class="label">
+                        {{#if displayNumGalleries.length}}
                         {{displayNumGalleries}} galleries
+                        {{else}}
+                        No galleries available
+                        {{/if}}
                     </div>
                 </div>
-
                 {{!-- Total number of photos across all galleries --}}
-                <div class="ui red statistic">
+                <div class="ui  statistic">
                     <div class="value">
                         <i class="camera icon"></i>
                     </div>
                     <div class="label">
+                        {{#if displayNumGalleries.length}}
                         {{displayNumPhotos}} photos
+                        {{else}}
+                        No photos available
+                        {{/if}}
                     </div>
                 </div>
-
                 {{!-- Average number of photos per gallery --}}
-                <div class="ui blue statistic">
+                <div class="ui  statistic">
                     <div class="value">
                         <i class="balance scale icon"></i>
                     </div>
                     <div class="label">
+                        {{#if displayNumGalleries.length}}
                         Average photos per <br> gallery: {{displayAverage}}
+                        {{else}}
+                        No photos available
+                        {{/if}}
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="ui sixteen wide column">
-            <div class="ui centered two statistics">
-
+            <div class="ui divider"></div>
+            {{!-- Additional statistics for users, average rating, and highest rated galleries --}}
+            <div class="ui centered three statistics">
+                <div class="ui purple statistic">
+                    <div class="value">
+                        <i class="user icon"></i>
+                    </div>
+                    <div class="label">
+                        users: {{userNum}}
+                    </div>
+                </div>
                 {{!-- Average rating across all galleries --}}
                 <div class="ui green statistic">
                     <div class="value">
                         <i class="dot circle outline icon"></i>
                     </div>
                     <div class="label">
+                        {{#if displayNumGalleries.length}}
                         Average Rating: {{displayAvgRating}}
+                        {{else}}
+                        No ratings yet
+                        {{/if}}
                     </div>
                 </div>
                 <div class="ui yellow statistic">
@@ -72,7 +93,11 @@ Displays the app logo, a welcome message, and live gallery statistics to the use
                         <i class="star icon"></i>
                     </div>
                     <div class="label">
-                        Highest Rated playlists: {{highest}} stars
+                        {{#if displayNumGalleries.length}}
+                        Highest Rated Galleries: {{highest}} stars
+                        {{else}}
+                        No ratings yet
+                        {{/if}}
                         <ul class="fav">
                             {{#each displayFav}}
                             <li>{{this}}</li>
@@ -81,8 +106,39 @@ Displays the app logo, a welcome message, and live gallery statistics to the use
                     </div>
                 </div>
             </div>
+            <div class="ui divider"></div>
+            {{!-- Additional statistics for last added gallery and longest galleries --}}
+            <div class="ui centered two statistics">
+                {{!-- Last added gallery --}}
+                <div class="ui  statistic">
+                    <div class="value">
+                        <i class="clock outline icon"></i>
+                    </div>
+                    <div class="label">
+                        {{#if displayNumGalleries.length}}
+                        Last Added Gallery: {{lastAddedGallery}}
+                        {{else}}
+                        No galleries available
+                        {{/if}}
+                    </div>
+                </div>
+                {{!-- Longest galleries based on number of photos --}}
+                <div class="ui  statistic">
+                    <div class="value">
+                        <i class="photo icon"></i>
+                    </div>
+                    <div class="label">
+                        {{#if displayNumGalleries.length}}
+                        Longest Galleries: {{#each longestgallerytTitles}}{{this}}{{#unless @last}},
+                        {{/unless}}{{/each}}
+                        {{else}}
+                        No galleries available
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     {{/with}}
-
 </section>
+

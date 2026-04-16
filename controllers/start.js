@@ -8,7 +8,8 @@
 
 import logger from "../utils/logger.js";
 import galleriesStore from "../models/galleries-store.js";
-
+import accounts from "./accounts.js";
+import userStore from "../models/user-store.js";
 const start = {
 
     /*
@@ -24,23 +25,40 @@ const start = {
         const numGalleries = galleries.length; // Calculate the total number of galleries
         const numPhotos = galleries.reduce((total, gallery) => total + gallery.photos.length, 0); // Calculate the total number of photos across all galleries
         const average = numGalleries > 0 ? (numPhotos / numGalleries).toFixed(1) : 0; // Calculate the average number of photos per gallery, avoiding division by zero
+        
         let totalRating = galleries.reduce((total, gallery) => total + parseInt(gallery.rating, 10), 0);
         let avgRating = numGalleries > 0 ? totalRating / numGalleries : 0;
         let maxRating = Math.max(...galleries.map(gallery => gallery.rating));
         let maxRated = galleries.filter(gallery => gallery.rating === maxRating);
         let favgalleries = maxRated.map(item => item.title);
+        
+        let longestgalleryLength = Math.max(...galleries.map(gallery => gallery.photos.length));
+        let longestgallerytTitles = galleries
+            .filter(gallery => gallery.photos.length === longestgalleryLength)
+            .map(gallery => gallery.title);
 
+        let firstName = accounts.getCurrentUser(request).firstName;
+        let userNum = userStore.getAllUsers().length;
+        
+        let lastAddedGallery = galleries.reduce((latest, gallery) => {
+            return new Date(gallery.date) > new Date(latest.date) ? gallery : latest;
+        }, galleries[0] || { date: 0 }); // Find the most recently added gallery, handling the case where there are no galleries
 
         const viewData = {
             title: "Welcome to the Photo Gallery app!",
+            firstName: firstName,            
             stats: {
                 displayNumGalleries: numGalleries,
                 displayNumPhotos: numPhotos,
                 displayAverage: average,
                 displayAvgRating: avgRating.toFixed(2),
                 highest: maxRating,
-                displayFav: favgalleries
-            }
+                displayFav: favgalleries,
+                userNum: userNum,
+                lastAddedGallery:lastAddedGallery.title,
+                longestgallerys: longestgallerytTitles,
+                longestgallerytTitles: longestgallerytTitles
+                }
 
         };
 

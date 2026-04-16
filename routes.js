@@ -19,12 +19,12 @@ import start from './controllers/start.js';
 import galleries from './controllers/galleries.js';
 import about from './controllers/about.js';
 import gallery from './controllers/gallery.js';
-
+import accounts from './controllers/accounts.js';
 /*
  * Route definitions.
  * Each route maps an HTTP GET request to its corresponding controller method.
  */
-router.get('/', start.createView);                // Home/Start page
+router.get('/start', start.createView);                // Home/Start page
 router.get('/galleries', galleries.createView);  // Galleries dashboard page
 router.get('/about', about.createView);         // About page
 router.get('/gallery/:id', gallery.createView);// Single gallery page, dynamic ID param
@@ -34,6 +34,21 @@ router.get('/searchCategory', galleries.createView); // Route for searching gall
 router.get('/sortData', galleries.createView);
 
 router.get('/error', (request, response) => response.status(404).end('Page not found.')); // Catch-all error route returning a 404 response
+
+router.get('/', accounts.index);
+router.get('/signup', accounts.signup);
+router.get('/logout', accounts.logout);
+
+router.get('/forgotpassword', accounts.forgotPasswordView);
+router.get('/changepassword', accounts.changePasswordView);
+router.get('/newpassword', accounts.newPasswordView);
+
+router.post('/newpassword', accounts.newPassword);
+router.post('/changepassword', accounts.verifyPassword);
+
+router.post('/forgotpassword', accounts.forgotPassword);
+router.post('/register', accounts.register);
+router.post('/authenticate', accounts.authenticate);
 
 router.post('/gallery/:id/addPhoto', gallery.addPhoto);// Route for adding a new photo to a specific gallery, identified by its ID
 router.post('/galleries/addGallery', galleries.addGallery);// Route for adding a new gallery to the dashboard

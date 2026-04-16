@@ -1,0 +1,30 @@
+{{> welcomemenu }}
+<div class="ui sixteen wide column">
+    <div class="ui column centered grid" >
+
+    <form class="ui stacked centered segment form" action="/authenticate" method="POST" style="background-color: #1A1D24; padding: 50px; border-radius: 10px; margin-top: 50px;">
+        <h3 class="ui header">Log-in</h3>
+        <div class="field">
+            <label for="email" style="color: white;">Email</label> <input placeholder="Email" type="email" name="email" autofocus required>
+        </div>
+        <div class="field">
+            <label for="password" style="color: white;">Password</label> <input placeholder="Password" type="password" name="password" autofocus required style="">
+        </div>
+        {{#if error}}
+        <div class="ui red message">Invalid email or password, try again.</div>
+        {{/if}}
+        <button class="ui blue submit button" id="loginButton">Login</button>
+        <div class="ui centered column grid" style="margin-top: 20px;">
+            <a class="ui secondary button" href="/forgotpassword">Forgot Password?</a>
+    </form>
+    </div>
+
+</div>
+<div class="ui  column centered grid" >
+        <a class="ui submit button" id="registerButton"  href="/signup" >
+            Register
+        </a>
+</div>
+
+
+

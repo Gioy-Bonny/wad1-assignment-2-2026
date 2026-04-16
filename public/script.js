@@ -1,3 +1,6 @@
+import accounts from "../controllers/accounts"
+import userStore from "../models/user-store"
+
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -27,8 +30,14 @@ document.addEventListener("DOMContentLoaded", function () {
     })
 })
 
-$('.ui.rating')
-    .rating()
-    ;
+$('.ui.rating').rating({
+    onRate: function (value) {
+        $('#ratingValue').val(value);
+    }
+});
 
-
+function checkPassword(){
+    if (accounts.getCurrentUser(request).password == 'password') {
+        alert("Your password has been reset to the default. Please change it.");
+    }
+}

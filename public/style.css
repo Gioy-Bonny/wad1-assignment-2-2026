@@ -27,7 +27,7 @@ nav.ui.menu {
 }
 
 section.ui.segment {
-    background-color: transparent;
+    background-color: transparent !important;
     color: #E6EAF2 !important;
     border-radius: 12px;
 }
@@ -119,6 +119,9 @@ p {
     background-color: #1A1D24;
     color: white;
     text-align: center;
+    .ui.table{
+        overflow-x: auto;
+    }
 
 }
 
@@ -183,7 +186,57 @@ tbody {
 
 input::placeholder {
     color: black!important;
+    text-align: center;
 }
-.dashboard-header .ui.form .field label{
+.ui.form .field label{
     color: #E6EAF2 !important;
+}
+
+#registerButton {
+    background-color: transparent;
+    color: white;
+    padding: 10px 50px;
+    margin-top: 20px;
+}
+#registerButton:hover {
+    text-decoration: underline;
+    background-color: #3A86FF;
+}
+
+#logoutButton{
+    background-color: white;
+    font-size: 15px;
+    font-weight: bolder;
+    margin-top: 10px; 
+    text-align: center; 
+    padding: 10px; 
+    width: 100px; 
+    margin-left: 10px; 
+    margin-right: auto;
+    border-radius: 12px;
+}
+#logoutButton:hover {
+    background-color: #ff4d4d;
+    text-decoration: underline;
+}
+
+#changePasswordButton{
+    background-color: white;
+    font-size: 15px;
+    font-weight: bolder;
+    margin-top: 10px; 
+    text-align: center; 
+    padding: 10px; 
+    width: 150px; 
+    margin-left: auto;
+    margin-right: 10px;
+    border-radius: 12px;
+}
+#changePasswordButton:hover {
+    background-color: #3A86FF;
+    text-decoration: underline;
+}
+.divider {
+    margin:30px !important;
+    padding: auto;
 }
