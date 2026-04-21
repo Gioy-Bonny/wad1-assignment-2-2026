@@ -11,10 +11,10 @@ import { v4 as uuidv4 } from 'uuid';
 import accounts from "./accounts.js";
 const galleries = {
 
-/*
- * Creates and renders the Galleries page view.
- * Retrieves all galleries from the store, prepares the view data and renders the "galleries" template.
- */
+    /*
+     * Creates and renders the Galleries page view.
+     * Retrieves all galleries from the store, prepares the view data and renders the "galleries" template.
+     */
     createView(request, response) {
         logger.info("Dashboard page loading!");
 
@@ -74,13 +74,14 @@ const galleries = {
             id: uuidv4(),
             title: request.body.title,
             photographer: request.body.photographer,
-            date: timestamp.toLocaleString(),
+            date: timestamp.toISOString(),
             rating: parseInt(request.body.rating) || 0, // Default to 0 if no rating is provided
             photos: [],
             userid: loggedInUser.id
         };
-        galleriesStore.addGallery(newGallery);
-        response.redirect('/galleries');
+        galleriesStore.addGallery(newGallery); {
+            response.redirect('/galleries');
+        }
     },
 
     deleteGallery(request, response) { // Extract the gallery ID from the URL params

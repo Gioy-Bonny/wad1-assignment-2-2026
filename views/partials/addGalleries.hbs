@@ -1,6 +1,7 @@
+
 <section class="ui center aligned middle aligned segment">
     <h2>Add New Gallery</h2>
-    <form class="ui stacked segment form" action="/galleries/addGallery" method="POST">
+    <form class="ui stacked segment form" id="addForm" action="/galleries/addGallery" method="POST">
         <div class="three fields">
             <div class="field">
                 <label>Title</label>
@@ -12,9 +13,10 @@
             </div>
             <div class="field">
                 <label>Rating</label>
-                <div class="ui star rating" data-max-rating="5" id="galleryRating"></div>
+                <div class="ui blue star rating" data-max-rating="5" id="galleryRating"></div>
                 <input type="hidden" id="ratingValue" name="rating">
             </div>
+            
         </div>
         <button class="ui blue submit button">Add Gallery</button>
     </form>

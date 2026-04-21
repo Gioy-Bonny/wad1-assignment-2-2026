@@ -13,7 +13,7 @@ const galleryStore = {
     store: new JsonStore('./models/galleries-store.json', { galleries: [] }), // Initialise the JSON store with the galleries file
     collection: 'galleries', // The key used to access the galleries collection in the store
     array: 'photos',         // The key used to access the photos array within a gallery
-    
+
     /*
     * Retrieves all galleries from the JSON store.
     * Returns the full contents of the 'galleries' collection.
@@ -37,12 +37,18 @@ const galleryStore = {
         return gallery.photos.find(photo => photo.id === photoId);
     },
     /*
-    * Adds a new photo to a specific gallery.
-    * Takes the gallery ID and the new photo object, and adds the photo to the gallery's photos array in the store.
-    */
-    addPhoto(id, photos) {
-        this.store.addItem(this.collection, id, this.array, photos);
-    },
+ * Asynchronously adds a new photo to a specific gallery.
+ * Uploads the image file to Cloudinary, attaches the returned URL to the photo,
+ * then saves the photo to the gallery's photos array in the store.
+ */
+async addPhoto(gallery, photo, file) {
+    photo.image = await this.store.addToCloudinary(file); // Upload image to Cloudinary
+    this.store.addItem(this.collection, gallery.id, this.array, photo); // Add photo to gallery
+},
+
+
+
+
     /*
     * Removes a song from a specific gallery.
     * Takes the gallery ID and the photo ID, and removes the photo from the gallery's photos array in the store.

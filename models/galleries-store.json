@@ -1,3 +1,90 @@
 {
-  "galleries": []
+  "galleries": [
+    {
+      "id": "001e96b0-e638-42a4-bb51-cbf494cbb5ed",
+      "title": "Tremore",
+      "photographer": "Gioele Bonini",
+      "date": "21/4/2026, 10:23:18",
+      "rating": 5,
+      "photos": [
+        {
+          "id": "77b73ad3-e954-4d81-b475-34d7c35ba90f",
+          "title": "wet ",
+          "image": {
+            "url": "http://res.cloudinary.com/dbhig1si4/image/upload/v1776763455/lp3pmixjhrhztmzatmta.jpg",
+            "public_id": "lp3pmixjhrhztmzatmta"
+          }
+        },
+        {
+          "id": "acf0ff45-5874-43e3-973a-6233bc327be9",
+          "title": "Run",
+          "image": {
+            "url": "http://res.cloudinary.com/dbhig1si4/image/upload/v1776764166/of6l5vddnxd315meaoa4.jpg",
+            "public_id": "of6l5vddnxd315meaoa4"
+          }
+        }
+      ],
+      "userid": "4d72c740-0def-4cf2-a09c-9633d53d4619"
+    },
+    {
+      "id": "e50b0543-48bf-401c-a830-75c0db889d6a",
+      "title": "Waterford",
+      "photographer": "Gioele Bonini",
+      "date": "21/4/2026, 10:48:19",
+      "rating": 3,
+      "photos": [
+        {
+          "id": "af0b2be0-e384-44fa-9f86-98589be399a9",
+          "title": "Walls Project",
+          "image": {
+            "url": "http://res.cloudinary.com/dbhig1si4/image/upload/v1776764996/aplwonegkelc5z4zos5q.jpg",
+            "public_id": "aplwonegkelc5z4zos5q"
+          }
+        },
+        {
+          "id": "375daf44-af30-4420-be2f-367cf738e45e",
+          "title": "Road",
+          "image": {
+            "url": "http://res.cloudinary.com/dbhig1si4/image/upload/v1776765213/xffjqp3unqjoyayxmwtk.jpg",
+            "public_id": "xffjqp3unqjoyayxmwtk"
+          }
+        }
+      ],
+      "userid": "4d72c740-0def-4cf2-a09c-9633d53d4619"
+    },
+    {
+      "id": "ee46c1fb-98cf-4e87-a127-545775f673f8",
+      "title": "People",
+      "photographer": "Gioele Bonini",
+      "date": "21/4/2026, 10:57:48",
+      "rating": 2,
+      "photos": [
+        {
+          "id": "0ecbecf8-11d8-4a22-80c7-defce8b0f6ae",
+          "title": "Winnie",
+          "image": {
+            "url": "http://res.cloudinary.com/dbhig1si4/image/upload/v1776765612/hbzmbrofsroezte2fkdo.jpg",
+            "public_id": "hbzmbrofsroezte2fkdo"
+          }
+        },
+        {
+          "id": "7fe27a9e-9127-4a6f-903e-95514068f3cc",
+          "title": "Drinking Man",
+          "image": {
+            "url": "http://res.cloudinary.com/dbhig1si4/image/upload/v1776765678/kbe4sbamvywf9rxlcwkt.jpg",
+            "public_id": "kbe4sbamvywf9rxlcwkt"
+          }
+        },
+        {
+          "id": "51b2028c-c326-4271-946a-16c990d7bff2",
+          "title": "sss",
+          "image": {
+            "url": "http://res.cloudinary.com/dbhig1si4/image/upload/v1776767014/ajpmve7uqj5vovrxqbba.jpg",
+            "public_id": "ajpmve7uqj5vovrxqbba"
+          }
+        }
+      ],
+      "userid": "4d72c740-0def-4cf2-a09c-9633d53d4619"
+    }
+  ]
 }

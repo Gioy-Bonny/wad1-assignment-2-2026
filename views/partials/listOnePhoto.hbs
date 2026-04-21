@@ -3,12 +3,13 @@
         {{title}}
     </td>
     <td>
-        {{image}}
+        <img src="{{image.url}}" alt="{{title}}" class="listPicture" onclick="openPhotoModal('{{image.url}}', '{{title}}')"
+            style="cursor: pointer;">
     </td>
     <td>
-        <button title="Edit song" class="editSubmit" id="showEdit{{@index}}" data-index="{{@index}}">
+        <a title="Edit song" class="editSubmit" id="showEdit{{@index}}" data-index="{{@index}}">
             <i class="ui pencil icon"></i>
-        </button>
+        </a>
 
     </td>
     <td>

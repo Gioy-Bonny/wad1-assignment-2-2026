@@ -7,11 +7,13 @@ Shows a message if the gallery is empty.
 {{!-- Only render the table if the gallery contains photos --}}
 {{#if singleGallery.photos}}
 <script>"/public/script.js"</script>
-<table class="ui stackable table">
-    <thead>
+<table class="ui stackable table" >
+    <thead >
         <tr>
-            <th>Title</th> {{!-- Column for the photo title --}}
-            <th>Picture</th> {{!-- Column for the photo image --}}
+            <th style="background-color: transparent; color: white; text-decoration: underline; font-size: 30px;">Title</th> {{!-- Column for the photo title --}}
+            <th style="background-color: transparent; color: white; text-decoration: underline; font-size: 30px;">Picture</th> {{!-- Column for the photo image --}}
+            <th style="background-color: transparent; color: white; text-decoration: underline; font-size: 30px;">Edit</th> {{!-- Column for the photo actions --}}
+            <th style="background-color: transparent; color: white; text-decoration: underline; font-size: 30px;">Delete</th> {{!-- Column for the photo actions --}}
         </tr>
     </thead>
     <tbody>
@@ -45,3 +47,10 @@ Shows a message if the gallery is empty.
     Empty gallery!
 </h3>
 {{/if}}
+
+{{!-- Fullscreen photo modal --}}
+<div id="photoModal" class="modal" style="display:none;">
+    <span class="closePhoto" style="position:absolute; right:40px; top:20px; color:white; font-size:40px; cursor:pointer;">&times;</span>
+    <img id="photoModalImg" style="max-width:90%; max-height:90%; margin:auto; display:flex; margin-top:5px;">
+    <p id="photoModalTitle" style="color:white; text-align:center; margin-top:10px; font-size:1.5em;"></p>
+</div>

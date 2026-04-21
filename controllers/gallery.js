@@ -29,22 +29,26 @@ const gallery = {
         response.render('gallery', viewData); // Render the gallery view with the retrieved data
     },
     /*
-    * Adds a new photo to a specific gallery.
-    * Extracts the gallery ID from the request params, creates a new photo object from the request body,
-    * adds the photo to the gallery in the store, and redirects back to the gallery view.
-    */
-    addPhoto(request, response) {
-        const galleryId = request.params.id;
-        const gallery = galleryStore.getGallery(galleryId);
+ * Handles the asynchronous addition of a new photo to a gallery.
+ * Uploads the photo image to Cloudinary, adds the photo to the gallery
+ * in the store, then redirects to the gallery page.
+ */
+    async addPhoto(request, response) {
+    try {
+        const galleryId = request.params.id;                          // Extract the gallery ID from the URL params
+        const gallery = galleryStore.getGallery(galleryId);           // Retrieve the gallery from the store
         const newPhoto = {
-            id: uuidv4(),
-            title: request.body.title,
-            image: request.body.image,
+            id: uuidv4(),                                             // Generate a unique ID for the new photo
+            title: request.body.title,                                // Get the photo title from the form
+            photographer: request.body.photographer,                  // Get the photographer name from the form
         };
-        galleryStore.addPhoto(galleryId, newPhoto);
-        response.redirect('/gallery/' + galleryId);
-    },
-
+        await galleryStore.addPhoto(gallery, newPhoto, request.files.image); // Upload and add the photo to the gallery
+        response.redirect(`/gallery/${galleryId}`);                   // Redirect back to the gallery on success
+    } catch (error) {
+        logger.error("Error adding photo to gallery:", error);        // Log any unexpected errors
+        response.redirect("/error");                                  // Redirect to the error page
+    }
+},
     /*
     * Deletes a photo from a specific gallery.
     * Extracts the gallery ID and photo ID from the request params, removes the photo from the gallery in the store, and redirects back to the gallery view.

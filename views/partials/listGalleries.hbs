@@ -50,12 +50,6 @@
             {{title}}
         </h1>
 
-        {{#if (isImage photos.[0].image)}}
-        <img src="{{photos.[0].image}}" alt="{{photos.[0].title}}" style="width: 300px; height: auto;">
-        {{!-- Display the first photo in the gallery as a thumbnail --}}
-        {{else}}
-        <p>No valid image available</p>
-        {{/if}}
 
         <h3>
             <p>Photographer: {{photographer}}</p>
