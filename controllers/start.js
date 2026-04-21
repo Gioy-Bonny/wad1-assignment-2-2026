@@ -20,7 +20,9 @@ const start = {
     createView(request, response) {
         logger.debug("Creating start view");
 
-        const galleries = galleriesStore.getAllGalleries(); // Fetch all galleries from the store
+        const currentUser = accounts.getCurrentUser(request);
+        const firstName = currentUser ? currentUser.firstName : "Guest";
+        const galleries = galleriesStore.getUserGalleries(currentUser.id);
 
         const numGalleries = galleries.length; // Calculate the total number of galleries
         const numPhotos = galleries.reduce((total, gallery) => total + gallery.photos.length, 0); // Calculate the total number of photos across all galleries
@@ -37,7 +39,7 @@ const start = {
             .filter(gallery => gallery.photos.length === longestgalleryLength)
             .map(gallery => gallery.title);
 
-        let firstName = accounts.getCurrentUser(request).firstName;
+        
         let userNum = userStore.getAllUsers().length;
 
 
