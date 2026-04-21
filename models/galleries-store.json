@@ -8,14 +8,6 @@
       "rating": 5,
       "photos": [
         {
-          "id": "77b73ad3-e954-4d81-b475-34d7c35ba90f",
-          "title": "wet ",
-          "image": {
-            "url": "http://res.cloudinary.com/dbhig1si4/image/upload/v1776763455/lp3pmixjhrhztmzatmta.jpg",
-            "public_id": "lp3pmixjhrhztmzatmta"
-          }
-        },
-        {
           "id": "acf0ff45-5874-43e3-973a-6233bc327be9",
           "title": "Run",
           "image": {
@@ -32,24 +24,7 @@
       "photographer": "Gioele Bonini",
       "date": "21/4/2026, 10:48:19",
       "rating": 3,
-      "photos": [
-        {
-          "id": "af0b2be0-e384-44fa-9f86-98589be399a9",
-          "title": "Walls Project",
-          "image": {
-            "url": "http://res.cloudinary.com/dbhig1si4/image/upload/v1776764996/aplwonegkelc5z4zos5q.jpg",
-            "public_id": "aplwonegkelc5z4zos5q"
-          }
-        },
-        {
-          "id": "375daf44-af30-4420-be2f-367cf738e45e",
-          "title": "Road",
-          "image": {
-            "url": "http://res.cloudinary.com/dbhig1si4/image/upload/v1776765213/xffjqp3unqjoyayxmwtk.jpg",
-            "public_id": "xffjqp3unqjoyayxmwtk"
-          }
-        }
-      ],
+      "photos": [],
       "userid": "4d72c740-0def-4cf2-a09c-9633d53d4619"
     },
     {
@@ -76,11 +51,11 @@
           }
         },
         {
-          "id": "51b2028c-c326-4271-946a-16c990d7bff2",
-          "title": "sss",
+          "id": "b01aa68d-9e9f-4956-ba01-7339f1d69594",
+          "title": "ddd",
           "image": {
-            "url": "http://res.cloudinary.com/dbhig1si4/image/upload/v1776767014/ajpmve7uqj5vovrxqbba.jpg",
-            "public_id": "ajpmve7uqj5vovrxqbba"
+            "url": "http://res.cloudinary.com/dbhig1si4/image/upload/v1776769700/ky4cagaznpkw6zgg26pq.jpg",
+            "public_id": "ky4cagaznpkw6zgg26pq"
           }
         }
       ],

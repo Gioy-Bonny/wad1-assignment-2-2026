@@ -41,21 +41,25 @@ const galleryStore = {
  * Uploads the image file to Cloudinary, attaches the returned URL to the photo,
  * then saves the photo to the gallery's photos array in the store.
  */
-async addPhoto(gallery, photo, file) {
-    photo.image = await this.store.addToCloudinary(file); // Upload image to Cloudinary
-    this.store.addItem(this.collection, gallery.id, this.array, photo); // Add photo to gallery
-},
-
-
-
-
+    async addPhoto(gallery, photo, file) {
+        photo.image = await this.store.addToCloudinary(file); // Upload image to Cloudinary
+        this.store.addItem(this.collection, gallery.id, this.array, photo); // Add photo to gallery
+    },
     /*
     * Removes a song from a specific gallery.
     * Takes the gallery ID and the photo ID, and removes the photo from the gallery's photos array in the store.
     */
-    removePhoto(id, galleryId) {
-        this.store.removeItem(this.collection, id, this.array, galleryId);
-    },
+    /*
+     * Asynchronously removes a photo from a specific gallery.
+     * Deletes the image from Cloudinary using the public ID,
+     * then removes the photo from the gallery's photos array in the store.
+     */
+    async removePhoto(id, galleryId) {
+            const photo = this.getPhoto(galleryId, id);
+            this.store.deleteFromCloudinary(photo.image.public_id); // Delete the image from Cloudinary
+            this.store.removeItem(this.collection, galleryId, this.array, id);
+        },
+
     /*
     * Updates a photo in a specific gallery.
     * Takes the gallery ID, photo ID, and the updated photo object, and updates the corresponding photo in the gallery's photos array in the store.

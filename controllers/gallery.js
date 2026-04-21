@@ -34,33 +34,40 @@ const gallery = {
  * in the store, then redirects to the gallery page.
  */
     async addPhoto(request, response) {
-    try {
-        const galleryId = request.params.id;                          // Extract the gallery ID from the URL params
-        const gallery = galleryStore.getGallery(galleryId);           // Retrieve the gallery from the store
-        const newPhoto = {
-            id: uuidv4(),                                             // Generate a unique ID for the new photo
-            title: request.body.title,                                // Get the photo title from the form
-            photographer: request.body.photographer,                  // Get the photographer name from the form
-        };
-        await galleryStore.addPhoto(gallery, newPhoto, request.files.image); // Upload and add the photo to the gallery
-        response.redirect(`/gallery/${galleryId}`);                   // Redirect back to the gallery on success
-    } catch (error) {
-        logger.error("Error adding photo to gallery:", error);        // Log any unexpected errors
-        response.redirect("/error");                                  // Redirect to the error page
-    }
-},
+        try {
+            const galleryId = request.params.id;                          // Extract the gallery ID from the URL params
+            const gallery = galleryStore.getGallery(galleryId);           // Retrieve the gallery from the store
+            const newPhoto = {
+                id: uuidv4(),                                             // Generate a unique ID for the new photo
+                title: request.body.title,                                // Get the photo title from the form
+                photographer: request.body.photographer,                  // Get the photographer name from the form
+            };
+            await galleryStore.addPhoto(gallery, newPhoto, request.files.image); // Upload and add the photo to the gallery
+            response.redirect(`/gallery/${galleryId}`);                   // Redirect back to the gallery on success
+        } catch (error) {
+            logger.error("Error adding photo to gallery:", error);        // Log any unexpected errors
+            response.redirect("/error");                                  // Redirect to the error page
+        }
+    },
     /*
-    * Deletes a photo from a specific gallery.
-    * Extracts the gallery ID and photo ID from the request params, removes the photo from the gallery in the store, and redirects back to the gallery view.
-    */
-    deletePhoto(request, response) { // Extract the gallery ID and photo ID from the URL params
-        const galleryId = request.params.id;// Extract the gallery ID from the URL params
-        const photoId = request.params.photoid;// Extract the photo ID from the URL params
+     * Handles the asynchronous deletion of a photo from a specific gallery.
+     * Retrieves the photo from the store, deletes the image from Cloudinary,
+     * removes the photo from the gallery in the store, then redirects back to the gallery view.
+     */
+    async deletePhoto(request, response) {
+        try {
+            const galleryId = request.params.id;                                    // Extract the gallery ID from the URL params
+            const photoId = request.params.photoid;                                 // Extract the photo ID from the URL params
+            const gallery = galleryStore.getGallery(galleryId);                     // Retrieve the gallery from the store
+            const photo = galleryStore.getPhoto(galleryId, photoId);                // Retrieve the specific photo from the gallery
 
-        logger.debug(`Deleting Photo ${photoId} from Gallery ${galleryId}`);// Log the IDs of the gallery and photo being deleted
-
-        galleryStore.removePhoto(galleryId, photoId);// Remove the photo from the gallery in the store
-        response.redirect(`/gallery/${galleryId}`);// Redirect back to the gallery view to show the updated gallery without the deleted photo
+            logger.debug(`Deleting photo ${photoId} from gallery ${galleryId}`);   // Log the IDs of the photo and gallery being deleted
+            galleryStore.removePhoto(photoId, galleryId);                         // Delete from Cloudinary and remove from store
+            response.redirect(`/gallery/${galleryId}`);                             // Redirect back to the gallery view on success
+        } catch (error) {
+            logger.error("Error deleting photo:", error);                           // Log any unexpected errors
+            response.redirect("/error");                                            // Redirect to the error page
+        }
     },
 
 
