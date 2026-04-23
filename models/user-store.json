@@ -1,5 +1,18 @@
 {
   "users": [
-
+    {
+      "firstName": "Gioele",
+      "lastName": "Bonini",
+      "email": "20118274@mail.wit.ie",
+      "password": "GIGGI",
+      "id": "4fe05ea4-c45e-4653-919a-f5b72a61a3a8"
+    },
+    {
+      "firstName": "Gioele",
+      "lastName": "Bonini",
+      "email": "20118274@mail.wit.ie",
+      "password": "GIGGI",
+      "id": "4ef4028a-c47c-4081-aea3-58778a17f497"
+    }
   ]
 }

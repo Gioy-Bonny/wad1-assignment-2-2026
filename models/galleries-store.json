@@ -1,4 +1,75 @@
 {
   "galleries": [
-    ]
+    {
+      "id": "001e96b0-e638-42a4-bb51-cbf494cbb5ed",
+      "title": "Tremore",
+      "photographer": "Gioele Bonini",
+      "date": "21/4/2026, 10:23:18",
+      "rating": 5,
+      "photos": [],
+      "userid": "4d72c740-0def-4cf2-a09c-9633d53d4619"
+    },
+    {
+      "id": "e50b0543-48bf-401c-a830-75c0db889d6a",
+      "title": "Waterford",
+      "photographer": "Gioele Bonini",
+      "date": "21/4/2026, 10:48:19",
+      "rating": 3,
+      "photos": [],
+      "userid": "4d72c740-0def-4cf2-a09c-9633d53d4619"
+    },
+    {
+      "id": "ee46c1fb-98cf-4e87-a127-545775f673f8",
+      "title": "People",
+      "photographer": "Gioele Bonini",
+      "date": "21/4/2026, 10:57:48",
+      "rating": 2,
+      "photos": [],
+      "userid": "4d72c740-0def-4cf2-a09c-9633d53d4619"
+    },
+    {
+      "id": "e73de490-67fc-46dd-a815-99e336010054",
+      "title": "ddd",
+      "photographer": "ddd",
+      "date": "2026-04-21T10:51:40.528Z",
+      "rating": 4,
+      "photos": [],
+      "userid": "ad4c598b-e82f-4f88-ae6f-9b75d6207249"
+    },
+    {
+      "id": "17e9f45f-2cbe-4533-8110-d803e1f73841",
+      "title": "vvv",
+      "photographer": "vvv",
+      "date": "2026-04-21T10:56:46.924Z",
+      "rating": 4,
+      "photos": [
+        {
+          "id": "8b3a0826-47cd-4510-9ac7-4c65f9ce7f3a",
+          "title": "ssss",
+          "image": {
+            "url": "http://res.cloudinary.com/dbhig1si4/image/upload/v1776769116/brgilfu9wuoe5hop7ayp.jpg",
+            "public_id": "brgilfu9wuoe5hop7ayp"
+          }
+        }
+      ],
+      "userid": "ad4c598b-e82f-4f88-ae6f-9b75d6207249"
+    },
+    {
+      "id": "2599c757-6589-4639-974f-c162abc18d8c",
+      "title": "www",
+      "photographer": "www",
+      "date": "2026-04-23T21:37:45.962Z",
+      "rating": 5,
+      "photos": []
+    },
+    {
+      "id": "2f810c7f-743f-4d39-ac4c-a922a3ddb094",
+      "title": "sdss",
+      "photographer": "sss",
+      "date": "2026-04-23T21:57:09.155Z",
+      "rating": 4,
+      "photos": [],
+      "userid": "4fe05ea4-c45e-4653-919a-f5b72a61a3a8"
+    }
+  ]
 }

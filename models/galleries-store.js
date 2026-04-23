@@ -1,5 +1,7 @@
 'use strict';
 
+import { response } from "express";
+import gallery from "../controllers/gallery.js";
 /*
 * Model for the galleries data.
 * Manages retrieval of all galleries and individual galleries from a JSON store.
@@ -21,6 +23,7 @@ const galleryStore = {
     getAllGalleries() {
         return this.store.findAll(this.collection); // Fetch all galleries from the store
     },
+    
     /*
     * Retrieves a single gallery by its ID.
     * Searches the 'galleries' collection for a gallery whose ID matches the given ID.
@@ -35,6 +38,11 @@ const galleryStore = {
     getPhoto(galleryId, photoId) {
         const gallery = this.getGallery(galleryId);
         return gallery.photos.find(photo => photo.id === photoId);
+    },
+
+    getAllPhotos(galleryId){
+        const gallery = this.getGallery(galleryId);
+        return gallery.array;
     },
     /*
  * Asynchronously adds a new photo to a specific gallery.
@@ -56,8 +64,13 @@ const galleryStore = {
      */
     async removePhoto(id, galleryId) {
             const photo = this.getPhoto(galleryId, id);
-            this.store.deleteFromCloudinary(photo.image.public_id); // Delete the image from Cloudinary
-            this.store.removeItem(this.collection, galleryId, this.array, id);
+            try{
+                await this.store.deleteFromCloudinary(photo.image.public_id); // Delete the image from Cloudinary
+                logger.info("Cloudinary image deleted");
+            }catch(err){
+                logger.error("Failed to delete Cloudinary image:", err);
+            }
+            await this.store.removeItem(this.collection, galleryId, this.array, id);
         },
 
     /*
@@ -78,9 +91,10 @@ const galleryStore = {
     * Removes a gallery from the store.
     * Takes the gallery ID, finds the corresponding gallery in the 'galleries' collection, and removes it from the store.
     */
-    removeGallery(id) {
+   
+    async removeGallery(id) {
         const gallery = this.getGallery(id);
-        this.store.removeCollection(this.collection, gallery);
+        await this.store.removeCollection(this.collection, gallery);
     },
     /*
     * Searches for galleries by title.

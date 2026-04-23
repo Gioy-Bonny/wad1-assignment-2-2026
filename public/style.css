@@ -20,7 +20,7 @@ nav.ui.menu {
     border-radius: 12px;
 }
 
-#dashboard:hover,
+#galleries:hover,
 #about:hover {
     background-color: #3A86FF !important;
     color: white !important;
@@ -174,7 +174,7 @@ tbody {
     margin-bottom: 15px;
 }
 
-.dashboard-header {
+.dasaboard-header {
     display: flex;
     justify-content: space-between;
     align-items: center;

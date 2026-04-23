@@ -62,7 +62,7 @@ const gallery = {
             const photo = galleryStore.getPhoto(galleryId, photoId);                // Retrieve the specific photo from the gallery
 
             logger.debug(`Deleting photo ${photoId} from gallery ${galleryId}`);   // Log the IDs of the photo and gallery being deleted
-            galleryStore.removePhoto(photoId, galleryId);                         // Delete from Cloudinary and remove from store
+            await galleryStore.removePhoto(photoId, galleryId);                         // Delete from Cloudinary and remove from store
             response.redirect(`/gallery/${galleryId}`);                             // Redirect back to the gallery view on success
         } catch (error) {
             logger.error("Error deleting photo:", error);                           // Log any unexpected errors

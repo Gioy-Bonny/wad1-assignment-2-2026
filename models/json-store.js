@@ -79,6 +79,7 @@ class JsonStore {
         data[0][arr].splice(index, 1, obj);
         await this.db.write();
     }
+
     async addToCloudinary(file) {
         const result = await cloudinary.uploader.upload(file.tempFilePath);
         logger.info("Cloudinary result:", result);
@@ -96,18 +97,37 @@ class JsonStore {
         };
     }
     async deleteFromCloudinary(publicId) {
+        logger.info("public id :" + publicId)
+        
         return new Promise((resolve, reject) => {
-            cloudinary.uploader.destroy(publicId, (result, err) => {
+            cloudinary.uploader.destroy(publicId, (err, result) => {
                 if (err) {
                     reject(err);
                 } else {
                     resolve(result);
+                    logger.info("deliting photo: "+ publicId);
                 }
             });
         });
     }
-
-
+/*
+    async deleteManyFromCloudinary(items) {
+    const publicIds = items.map(item => item.image.public_Id);
+    logger.info("public ids: " + publicIds.join(", "));
+    logger.info("raw items: " + JSON.stringify(items));
+    return new Promise((resolve, reject) => {
+        cloudinary.api.delete_resources(publicIds, (err, result) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(result);
+                logger.info("deleted photos: " + publicIds.join(", "));
+            }
+        });
+    });*/
 }
+
+
+
 
 export default JsonStore;

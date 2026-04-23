@@ -88,7 +88,7 @@ const galleries = {
         const galleryId = request.params.id;// Log the ID of the gallery being deleted
 
         logger.debug(`Deleting Gallery ${galleryId}`);// Remove the gallery from the store using its ID
-
+        
         galleriesStore.removeGallery(galleryId);
         response.redirect("/galleries");
     },
