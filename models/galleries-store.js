@@ -93,9 +93,25 @@ const galleryStore = {
     */
    
     async removeGallery(id) {
-        const gallery = this.getGallery(id);
+    const gallery = this.getGallery(id);
+        if (!gallery) {
+        logger.error('gallery not found for id: ' + id);
+        return;
+    }
+    const images = gallery.photos;
+    logger.info('images array: ' + JSON.stringify(images));
+
+    try {
+        await this.store.deleteManyFromCloudinary(images);
+        logger.info('deleted photos from cloudinary for gallery: ' + id);
+
         await this.store.removeCollection(this.collection, gallery);
-    },
+        logger.info('removed gallery collection: ' + id);
+    } catch (err) {
+        logger.error('failed to remove gallery ' + id + ': ' + err.message);
+        throw err;
+    }
+},
     /*
     * Searches for galleries by title.
     * Takes a search string and returns an array of galleries whose titles include the search string (case-insensitive).

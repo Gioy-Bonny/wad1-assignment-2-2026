@@ -84,13 +84,17 @@ const galleries = {
         }
     },
 
-    deleteGallery(request, response) { // Extract the gallery ID from the URL params
-        const galleryId = request.params.id;// Log the ID of the gallery being deleted
+    async deleteGallery(request, response) {
+        const galleryId = request.params.id;
+        logger.debug(`Deleting Gallery ${galleryId}`);
 
-        logger.debug(`Deleting Gallery ${galleryId}`);// Remove the gallery from the store using its ID
-        
-        galleriesStore.removeGallery(galleryId);
-        response.redirect("/galleries");
+        try {
+            await galleriesStore.removeGallery(galleryId);
+            response.redirect("/galleries");
+        } catch (err) {
+            logger.error('error deleting gallery: ' + err.message);
+            response.status(500).json({ error: 'Failed to delete gallery' });
+        }
     },
 
 };

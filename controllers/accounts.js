@@ -36,6 +36,7 @@ const accounts = {
     signup(request, response) {
         const viewData = {
             title: 'Login to the Service',
+            error: request.query.error,
         };
         response.render('signup', viewData);
     },
@@ -43,9 +44,15 @@ const accounts = {
     //register function to render the registration page for adding a new user
     register(request, response) {
         const user = request.body;
+        const existingUser = userStore.getUserByEmail(user.email); 
+        if (existingUser) {
+            logger.info('same Email')
+            response.redirect('/signup?error=Email already in use');
+            return;
+        }
         user.id = uuidv4();
         userStore.addUser(user);
-        logger.info('registering' + user.email);
+        logger.info('registering ' + user.email);
         response.redirect('/');
     },
 
